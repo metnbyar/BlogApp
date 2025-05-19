@@ -3,7 +3,7 @@ using BlogApp.Entity.Entities;
 
 namespace BlogApp.Entity.Entities
 {
-    public class Article : EntityBase, IEntityBase
+    public class Article : EntityBase
     {
         public string Title { get; set; }
         public string Content { get; set; }
