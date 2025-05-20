@@ -1,5 +1,8 @@
-﻿using BlogApp.Data.Repositories.Abstractsions;
+﻿using BlogApp.Data.Context;
+using BlogApp.Data.Repositories.Abstractsions;
 using BlogApp.Data.Repositories.Concretes;
+using BlogApp.Data.UnitOfWorks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -15,6 +18,11 @@ namespace BlogApp.Data.Extensions
         public static IServiceCollection LoadDataLayerExtension(this IServiceCollection services , IConfiguration config)
         {
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            
+            services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(config.GetConnectionString("DefaultConnection")));
+            
+
+            services.AddScoped<IUnitOfWork,UnitOfWork>();
             return services;
         }
     }
