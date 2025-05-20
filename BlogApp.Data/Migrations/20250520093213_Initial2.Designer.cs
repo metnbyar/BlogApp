@@ -4,6 +4,7 @@ using BlogApp.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogApp.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250520093213_Initial2")]
+    partial class Initial2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,32 +78,6 @@ namespace BlogApp.Data.Migrations
                     b.HasIndex("ImageId");
 
                     b.ToTable("Articles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("e4f66ada-d6ff-40db-b52b-28a3b2736890"),
-                            CategoryId = new Guid("ef3bf98c-a244-4de1-a0ae-a713f671817e"),
-                            Content = "Asp.Net Core Lorem İpsummmmm",
-                            CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2025, 5, 20, 13, 11, 48, 255, DateTimeKind.Local).AddTicks(767),
-                            ImageId = new Guid("b1cdbffc-0b49-4b3b-81d8-2fd38b6dd533"),
-                            Title = "Asp.Net Core Deneme Makalesi 1",
-                            ViewCount = 15,
-                            isDeleted = false
-                        },
-                        new
-                        {
-                            Id = new Guid("4780def1-0ebf-42f2-85a4-fb91c764f8db"),
-                            CategoryId = new Guid("2671c8b7-fd88-4a59-841e-817dd64a0f88"),
-                            Content = " Visual Studio Lorem İpsummmmm",
-                            CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2025, 5, 20, 13, 11, 48, 255, DateTimeKind.Local).AddTicks(772),
-                            ImageId = new Guid("299a6cf4-5c0f-433c-9f9f-48a66e99cb70"),
-                            Title = "Visual Studio Deneme Makalesi 1",
-                            ViewCount = 15,
-                            isDeleted = false
-                        });
                 });
 
             modelBuilder.Entity("BlogApp.Entity.Entities.Category", b =>
@@ -138,24 +115,6 @@ namespace BlogApp.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("ef3bf98c-a244-4de1-a0ae-a713f671817e"),
-                            CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2025, 5, 20, 13, 11, 48, 255, DateTimeKind.Local).AddTicks(1984),
-                            Name = "ASP.NET CORE",
-                            isDeleted = false
-                        },
-                        new
-                        {
-                            Id = new Guid("2671c8b7-fd88-4a59-841e-817dd64a0f88"),
-                            CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2025, 5, 20, 13, 11, 48, 255, DateTimeKind.Local).AddTicks(1998),
-                            Name = "Visual Studio 2022",
-                            isDeleted = false
-                        });
                 });
 
             modelBuilder.Entity("BlogApp.Entity.Entities.Image", b =>
@@ -197,26 +156,6 @@ namespace BlogApp.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Images");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("b1cdbffc-0b49-4b3b-81d8-2fd38b6dd533"),
-                            CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2025, 5, 20, 13, 11, 48, 255, DateTimeKind.Local).AddTicks(2896),
-                            FileName = "images/testimage",
-                            FileType = "jpg",
-                            isDeleted = false
-                        },
-                        new
-                        {
-                            Id = new Guid("299a6cf4-5c0f-433c-9f9f-48a66e99cb70"),
-                            CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2025, 5, 20, 13, 11, 48, 255, DateTimeKind.Local).AddTicks(2899),
-                            FileName = "images/vstest",
-                            FileType = "jpg",
-                            isDeleted = false
-                        });
                 });
 
             modelBuilder.Entity("BlogApp.Entity.Entities.Article", b =>
