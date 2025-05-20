@@ -1,11 +1,13 @@
 using BlogApp.Data.Context;
 using BlogApp.Data.Extensions;
+using BlogApp.Service.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.LoadDataLayerExtension(builder.Configuration);
+builder.Services.LoadServiceLayerExtension();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
