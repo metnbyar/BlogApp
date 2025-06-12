@@ -8,6 +8,6 @@ namespace BlogApp.Entity.Entities
         public string FileName { get; set; }
         public string FileType { get; set; }
         public ICollection<Article> Articles { get; set; } // Bir resim birden fazla makalede olabilir.
-
+        public ICollection<AppUser> Users { get; set; }
     }
 }

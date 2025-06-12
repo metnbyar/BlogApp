@@ -53,21 +53,21 @@ namespace BlogApp.Data.Migrations
                         new
                         {
                             Id = new Guid("bdea8c46-7f11-4af4-af0c-d733719f292e"),
-                            ConcurrencyStamp = "ba1843e0-f46b-4da1-920d-e9d03edb182d",
+                            ConcurrencyStamp = "37f5a937-cd7a-486f-8898-51267cd1194c",
                             Name = "Superadmin",
                             NormalizedName = "SUPERADMIN"
                         },
                         new
                         {
                             Id = new Guid("d4a9834e-545e-46c3-800a-d327c375cae5"),
-                            ConcurrencyStamp = "f9d7f1a8-5df3-4057-b4fb-a7f305f3ae59",
+                            ConcurrencyStamp = "5f1e17fa-d47e-415c-82a9-d40e31116320",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = new Guid("c6b83f32-360f-4ddf-9859-dfc2a4cfeae4"),
-                            ConcurrencyStamp = "20078edc-b4be-481e-9212-c6a974304317",
+                            ConcurrencyStamp = "c994a0f0-e1bc-4e12-8580-87310926be8b",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -121,6 +121,9 @@ namespace BlogApp.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("ImageId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -160,6 +163,8 @@ namespace BlogApp.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ImageId");
+
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -175,18 +180,19 @@ namespace BlogApp.Data.Migrations
                         {
                             Id = new Guid("e5469f4f-4578-4c4b-9587-01ee9b023b3f"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bcda671e-e0ea-4c7e-9f9f-e85a3e459810",
+                            ConcurrencyStamp = "87774c37-7515-41a2-aeae-5f635ba809af",
                             Email = "superadmin@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Metin",
+                            ImageId = new Guid("b1cdbffc-0b49-4b3b-81d8-2fd38b6dd533"),
                             LastName = "Bayar",
                             LockoutEnabled = false,
                             NormalizedEmail = "SUPERADMIN@GMAIL.COM",
                             NormalizedUserName = "SUPERADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAECt57PU1d6VB8QCrxVvGC0SJUqCtVz7u7f0lXUHaXFRzl/c6KXOeNk1NSMwbFyJTmw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEO6ME8mFyBPd3vXRhUYreU/0C8YGi4MKDvQrUxXP5FCrwfqCqe9CU3JMs+175Omc3g==",
                             PhoneNumber = "+905439999999",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "7cd31b70-0119-4f5d-bcd0-3a8b52f3ffb6",
+                            SecurityStamp = "3567a18d-3620-4f97-aa8b-6476f40ceb56",
                             TwoFactorEnabled = false,
                             UserName = "superadmin@gmail.com"
                         },
@@ -194,18 +200,19 @@ namespace BlogApp.Data.Migrations
                         {
                             Id = new Guid("4d75b4ba-8e8a-443a-8bb0-3ccc01d27144"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "44a69f08-02e3-43a4-b492-502f6d3cb9cc",
+                            ConcurrencyStamp = "ed09e866-1260-4ad6-b044-b27697aae7be",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
+                            ImageId = new Guid("299a6cf4-5c0f-433c-9f9f-48a66e99cb70"),
                             LastName = "User",
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEF106cJ59jXTsXouMaNwwhuIiGEB+DWmgvlDk6Uvhv4JXZ7chO/wxeK+n4QAVNZadA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMS6EbgM5Q4W8LJ7bK5v68oKLkNEhf2oEfvhcb2MAWlb0X/iuCu2rgguWf+NdQhSmQ==",
                             PhoneNumber = "+905439999988",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d571dd48-3256-4960-9e87-a59ece3d7115",
+                            SecurityStamp = "e3aca23b-380a-4bc5-8fa9-421220a93d2e",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         });
@@ -330,7 +337,7 @@ namespace BlogApp.Data.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("ImageId")
+                    b.Property<Guid?>("ImageId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ModifiedBy")
@@ -344,6 +351,9 @@ namespace BlogApp.Data.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("ViewCount")
                         .HasColumnType("int");
 
@@ -356,30 +366,34 @@ namespace BlogApp.Data.Migrations
 
                     b.HasIndex("ImageId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Articles");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ab7fb0fc-d7d2-441b-aec3-d9cf61403f8f"),
+                            Id = new Guid("2e0c3c0c-b4a1-45fa-91c3-b7c73162f27a"),
                             CategoryId = new Guid("ef3bf98c-a244-4de1-a0ae-a713f671817e"),
                             Content = "Asp.Net Core Lorem İpsummmmm",
                             CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2025, 6, 12, 18, 17, 37, 327, DateTimeKind.Local).AddTicks(7352),
+                            CreatedDate = new DateTime(2025, 6, 12, 19, 53, 53, 522, DateTimeKind.Local).AddTicks(4726),
                             ImageId = new Guid("b1cdbffc-0b49-4b3b-81d8-2fd38b6dd533"),
                             Title = "Asp.Net Core Deneme Makalesi 1",
+                            UserId = new Guid("e5469f4f-4578-4c4b-9587-01ee9b023b3f"),
                             ViewCount = 15,
                             isDeleted = false
                         },
                         new
                         {
-                            Id = new Guid("d0ef31d3-3f0c-47ca-8dd3-f95981733540"),
+                            Id = new Guid("27150ee2-ba85-4def-bc6e-4ccd4ee4f450"),
                             CategoryId = new Guid("2671c8b7-fd88-4a59-841e-817dd64a0f88"),
                             Content = " Visual Studio Lorem İpsummmmm",
                             CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2025, 6, 12, 18, 17, 37, 327, DateTimeKind.Local).AddTicks(7357),
+                            CreatedDate = new DateTime(2025, 6, 12, 19, 53, 53, 522, DateTimeKind.Local).AddTicks(4731),
                             ImageId = new Guid("299a6cf4-5c0f-433c-9f9f-48a66e99cb70"),
                             Title = "Visual Studio Deneme Makalesi 1",
+                            UserId = new Guid("4d75b4ba-8e8a-443a-8bb0-3ccc01d27144"),
                             ViewCount = 15,
                             isDeleted = false
                         });
@@ -426,7 +440,7 @@ namespace BlogApp.Data.Migrations
                         {
                             Id = new Guid("ef3bf98c-a244-4de1-a0ae-a713f671817e"),
                             CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2025, 6, 12, 18, 17, 37, 327, DateTimeKind.Local).AddTicks(9505),
+                            CreatedDate = new DateTime(2025, 6, 12, 19, 53, 53, 522, DateTimeKind.Local).AddTicks(6076),
                             Name = "ASP.NET CORE",
                             isDeleted = false
                         },
@@ -434,7 +448,7 @@ namespace BlogApp.Data.Migrations
                         {
                             Id = new Guid("2671c8b7-fd88-4a59-841e-817dd64a0f88"),
                             CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2025, 6, 12, 18, 17, 37, 327, DateTimeKind.Local).AddTicks(9507),
+                            CreatedDate = new DateTime(2025, 6, 12, 19, 53, 53, 522, DateTimeKind.Local).AddTicks(6078),
                             Name = "Visual Studio 2022",
                             isDeleted = false
                         });
@@ -485,7 +499,7 @@ namespace BlogApp.Data.Migrations
                         {
                             Id = new Guid("b1cdbffc-0b49-4b3b-81d8-2fd38b6dd533"),
                             CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2025, 6, 12, 18, 17, 37, 328, DateTimeKind.Local).AddTicks(458),
+                            CreatedDate = new DateTime(2025, 6, 12, 19, 53, 53, 522, DateTimeKind.Local).AddTicks(6984),
                             FileName = "images/testimage",
                             FileType = "jpg",
                             isDeleted = false
@@ -494,7 +508,7 @@ namespace BlogApp.Data.Migrations
                         {
                             Id = new Guid("299a6cf4-5c0f-433c-9f9f-48a66e99cb70"),
                             CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2025, 6, 12, 18, 17, 37, 328, DateTimeKind.Local).AddTicks(469),
+                            CreatedDate = new DateTime(2025, 6, 12, 19, 53, 53, 522, DateTimeKind.Local).AddTicks(6998),
                             FileName = "images/vstest",
                             FileType = "jpg",
                             isDeleted = false
@@ -508,6 +522,17 @@ namespace BlogApp.Data.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("BlogApp.Entity.Entities.AppUser", b =>
+                {
+                    b.HasOne("BlogApp.Entity.Entities.Image", "Image")
+                        .WithMany("Users")
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Image");
                 });
 
             modelBuilder.Entity("BlogApp.Entity.Entities.AppUserClaim", b =>
@@ -562,13 +587,24 @@ namespace BlogApp.Data.Migrations
 
                     b.HasOne("BlogApp.Entity.Entities.Image", "Image")
                         .WithMany("Articles")
-                        .HasForeignKey("ImageId")
+                        .HasForeignKey("ImageId");
+
+                    b.HasOne("BlogApp.Entity.Entities.AppUser", "User")
+                        .WithMany("Articles")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Category");
 
                     b.Navigation("Image");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("BlogApp.Entity.Entities.AppUser", b =>
+                {
+                    b.Navigation("Articles");
                 });
 
             modelBuilder.Entity("BlogApp.Entity.Entities.Category", b =>
@@ -579,6 +615,8 @@ namespace BlogApp.Data.Migrations
             modelBuilder.Entity("BlogApp.Entity.Entities.Image", b =>
                 {
                     b.Navigation("Articles");
+
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }
