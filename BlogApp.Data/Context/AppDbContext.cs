@@ -1,5 +1,6 @@
 ﻿using BlogApp.Data.Mappings;
 using BlogApp.Entity.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BlogApp.Data.Context
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<AppUser,AppRole,Guid,AppUserClaim,AppUserRole,AppUserLogin,AppRoleClaim,AppUserToken>
     {
         protected AppDbContext()
         {
@@ -27,7 +28,7 @@ namespace BlogApp.Data.Context
         {
             //builder.ApplyConfiguration(new ArticleMap());  tek tek yaparsak böyle olur.
             //builder.Entity<Article>().Property(x=>x.Title).HasMaxLength(150); map classları yerine burda da yapabiliriz ama clean code olmaz
-
+            base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly()); //IEntityTypeConfiguration dan kalıtım alan tüm map classlarını oto tanımlar.
 
         }
