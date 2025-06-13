@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace BlogApp.Data.Mappings
 {
     public class UserRoleMap : IEntityTypeConfiguration<AppUserRole>
+
     {
         public void Configure(EntityTypeBuilder<AppUserRole> builder)
         {
