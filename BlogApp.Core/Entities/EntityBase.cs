@@ -16,7 +16,7 @@ namespace BlogApp.Core.Entities
         //} Bu şekilde de kullanılabilir
 
         public virtual Guid Id { get; set; }= Guid.NewGuid();
-        public virtual string CreatedBy { get; set; }
+        public virtual string CreatedBy { get; set; } = "Undefined";
         public virtual string? ModifiedBy { get; set; } // ? işareti nullable
         public virtual string? DeletedBy { get; set; }
 
